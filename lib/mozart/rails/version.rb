@@ -1,6 +1,6 @@
 module Mozart
   module Rails
-    VERSION = "0.0.1"
+    VERSION = "0.0.2"
 
     # Static JavaScript asset versions
     HANDLEBARS_VERSION = "1.0.rc.1"
