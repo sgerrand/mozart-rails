@@ -1,6 +1,7 @@
 require "bundler/gem_tasks"
 
-task :release => [:copy_source_files, :guard_version]
+task :build => ['files:copy_source', 'files:minify']
+task :release => ['files:copy_source', 'files:minify', :guard_version]
 
 task :guard_version do
   def check_version(file, pattern, constant)
@@ -17,23 +18,38 @@ task :guard_version do
   check_version("mozart-#{Mozart::Rails::MOZART_VERSION}.js", /version: "([\S]+)"/, 'MOZART_VERSION')
 end
 
-desc "Copy source files into the assets directory"
-task :copy_source_files do
-  require 'fileutils'
+namespace :files do
+  Mozart::Rails::VENDOR_PATH = "vendor/assets/javascripts/mozart/vendor/scripts"
+  Mozart::Rails::ASSETS_PATH = "lib/assets/javascripts/mozart"
 
-  VENDOR_PATH = "vendor/assets/javascripts/mozart/vendor/scripts"
-  ASSETS_PATH = "vendor/assets/javascripts"
+  desc "Copy source files into the assets directory"
+  task :copy_source do
+    require 'fileutils'
 
-  [
-    "handlebars-#{Mozart::Rails::HANDLEBARS_VERSION}",
-    "jquery-#{Mozart::Rails::JQUERY_VERSION}",
-    "mozart-#{Mozart::Rails::MOZART_VERSION}",
-    "underscore-#{Mozart::Rails::UNDERSCORE_VERSION}",
-  ].each do |file|
-    if File.file? File.join(ASSETS_PATH, "#{file.gsub(/-.+/, '')}.js")
-      puts "File exists: #{File.join(ASSETS_PATH, "#{file.gsub(/-.+/, '')}.js")}, skipping"
-    else
-      FileUtils.cp File.join(VENDOR_PATH, "#{file}.js"), File.join(ASSETS_PATH, "#{file.gsub(/-.+/, '')}.js")
+    [
+      "handlebars-#{Mozart::Rails::HANDLEBARS_VERSION}",
+      "jquery-#{Mozart::Rails::JQUERY_VERSION}",
+      "mozart-#{Mozart::Rails::MOZART_VERSION}",
+      "underscore-#{Mozart::Rails::UNDERSCORE_VERSION}",
+    ].each do |file|
+      if File.file? File.join(Mozart::Rails::ASSETS_PATH, "#{file.gsub(/-.+/, '')}.js")
+        puts "File exists: #{File.join(Mozart::Rails::ASSETS_PATH, "#{file.gsub(/-.+/, '')}.js")}, skipping"
+      else
+        FileUtils.cp File.join(Mozart::Rails::VENDOR_PATH, "#{file}.js"), File.join(Mozart::Rails::ASSETS_PATH, "#{file.gsub(/-.+/, '')}.js")
+      end
     end
+  end
+
+  task :minify do
+    require 'uglifier'
+
+    puts "Minifying.."
+    ["handlebars", "jquery", "mozart", "underscore"].each do |file|
+      File.open(File.join(Mozart::Rails::ASSETS_PATH, "#{file}.min.js"), 'w') do |f|
+        f.puts Uglifier.compile(File.read("#{File.join(Mozart::Rails::ASSETS_PATH, file)}.js"))
+      end
+      puts "Minified file: #{file}"
+    end
+    puts "Done"
   end
 end
