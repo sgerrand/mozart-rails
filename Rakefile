@@ -1,4 +1,5 @@
 require "bundler/gem_tasks"
+require "mozart/rails/constants"
 
 task :build => ['files:copy_source', 'files:minify']
 task :release => ['files:copy_source', 'files:minify', :guard_version]
@@ -19,9 +20,6 @@ task :guard_version do
 end
 
 namespace :files do
-  Mozart::Rails::VENDOR_PATH = "vendor/assets/javascripts/mozart/vendor/scripts"
-  Mozart::Rails::ASSETS_PATH = "lib/assets/javascripts/mozart"
-
   desc "Copy source files into the assets directory"
   task :copy_source do
     require 'fileutils'
