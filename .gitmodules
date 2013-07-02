@@ -1,3 +1,3 @@
-[submodule "vendor/mozart"]
-	path = vendor/mozart
-	url = git@github.com:bigcommerce/mozart-empty.git
+[submodule "vendor/mozart-empty"]
+	path = vendor/mozart-empty
+	url = git://github.com/bigcommerce/mozart-empty.git
