@@ -24,7 +24,7 @@ task :clean do
   puts "Removing JavaScript assets"
 
   Dir.glob(Mozart::Rails::VENDOR_PATH + "/*.js").each do |file|
-    unless file.match(/mozart-rails.js$/)
+    unless file.match(/mozart-all.js$/)
       puts "Removing #{file}"
       File.unlink file
     end
