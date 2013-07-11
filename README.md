@@ -4,7 +4,7 @@ Mozart! For Rails!
 
 This gem provides:
 
-* Mozart 0.1.4
+* Mozart 0.1.8
 
 ## Installation
 
@@ -21,7 +21,7 @@ And then execute:
 Or install it yourself via:
 
     $ bundle exec rake build
-    $ gem install --local pkg/mozart-rails-0.0.1.gem
+    $ gem install --local pkg/mozart-rails-1.0.1.gem
 
 ### Rails 3.1 or greater
 
@@ -29,7 +29,7 @@ The mozart files will be added to the asset pipeline and available for you to
 use. If they're not already in app/assets/javascripts/application.js by default, 
 add these lines:
 
-    //= require mozart
+    //= require mozart-rails
 
 ## Usage
 
