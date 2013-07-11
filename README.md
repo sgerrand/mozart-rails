@@ -4,7 +4,7 @@ Mozart! For Rails!
 
 This gem provides:
 
-* Mozart 0.1.4
+* Mozart 0.1.8 - [mozart.io](http://mozart.io/)
 
 ## Installation
 
@@ -21,19 +21,26 @@ And then execute:
 Or install it yourself via:
 
     $ bundle exec rake build
-    $ gem install --local pkg/mozart-rails-0.0.1.gem
+    $ gem install --local pkg/mozart-rails-1.0.1.gem
 
-### Rails 3.1 or greater
-
-The mozart files will be added to the asset pipeline and available for you to 
-use. If they're not already in app/assets/javascripts/application.js by default, 
-add these lines:
-
-    //= require mozart
 
 ## Usage
 
-TODO: Write usage instructions here
+### Rails 3.1 or greater
+
+The Mozart files and all dependencies will be added to the asset pipeline and be 
+available for you to use. If they're not already in app/assets/javascripts/application.js, 
+add these lines:
+
+    //= require mozart-all
+
+#### Self-managing dependencies
+
+Mozart has a dependency on the Handlebars, jQuery and Underscore libraries. 
+If you want to handle these dependencies yourself, then you can use the following 
+line instead:
+
+    //= require mozart
 
 ## Contributing
 
