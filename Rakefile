@@ -1,8 +1,15 @@
 require "bundler/gem_tasks"
+require "rake/testtask"
 require "mozart/rails/assets"
 
-task :build => [:clean, :download]
-task :release => [:clean, :download, :guard_version]
+task :build => [:test, :clean, :download]
+task :release => [:test, :clean, :download, :guard_version]
+
+Rake::TestTask.new do |t|
+  t.libs << 'test'
+  t.pattern = 'test/**/test*.rb'
+  t.verbose = true
+end
 
 task :guard_version do
   def check_version(file, pattern, constant)
