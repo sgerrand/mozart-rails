@@ -1,6 +1,6 @@
 module Mozart
   module Rails
-    GEM_ROOT = File.expand_path(File.dirname(__FILE__) + '../')
+    GEM_ROOT = File.expand_path('../../', __FILE__)
   end
 end
 

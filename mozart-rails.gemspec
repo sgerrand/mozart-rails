@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Sasha Gerrand"]
   spec.email         = ["sasha.gerrand@bigcommerce.com"]
   spec.description   = %q{Use Mozart with Rails 3}
-  spec.summary       = %q{This gem provides Mozart for your Rails 3 application.}
+  spec.summary       = %q{This gem provides the Mozart JavaScript framework for your Rails 3 application.}
   spec.homepage      = "https://mozart.io"
   spec.license       = "MIT"
 
@@ -22,8 +22,10 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.3"
+  spec.add_development_dependency "coveralls"
   spec.add_development_dependency "rake"
-  spec.add_runtime_dependency "handlebars-rails"
+  spec.add_development_dependency "minitest"
+  spec.add_runtime_dependency "handlebars_assets"
   spec.add_runtime_dependency "jquery-rails"
   spec.add_runtime_dependency "underscore-rails"
 end
