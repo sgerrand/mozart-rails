@@ -4,6 +4,7 @@ require "mozart/rails/assets"
 
 task :build => [:test, :clean, :download]
 task :release => [:test, :clean, :download, :guard_version]
+task :default => :test
 
 Rake::TestTask.new do |t|
   t.libs << 'test'

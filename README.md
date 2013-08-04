@@ -1,5 +1,11 @@
 # Mozart::Rails
 
+[![Gem Version](https://badge.fury.io/rb/mozart-rails.png)](https://rubygems.org/gems/mozart-rails)
+[![Build Status](https://travis-ci.org/bigcommerce/mozart-rails.png?branch=master)](https://travis-ci.org/bigcommerce/mozart-rails)
+[![Dependency Status](https://gemnasium.com/bigcommerce/mozart-rails.png?travis)](https://gemnasium.com/bigcommerce/mozart-rails)
+[![Code Climate](https://codeclimate.com/github/bigcommerce/mozart-rails.png)](https://codeclimate.com/github/bigcommerce/mozart-rails)
+[![Coverage Status](https://coveralls.io/repos/bigcommerce/mozart-rails/badge.png?branch=master)](https://coveralls.io/r/bigcommerce/mozart-rails?branch=master)
+
 Mozart! For Rails!
 
 This gem provides:
