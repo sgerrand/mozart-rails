@@ -1,6 +1,6 @@
 require 'minitest_helper'
 
-class Mozart::Rails::TestEngine < MiniTest::Unit::TestCase
+class Mozart::Rails::EngineTest < MiniTest::Unit::TestCase
   def test_inherits_from_rails_engine
     # Handle all versions in one hit
     if ::Rails.version >= '3.1'

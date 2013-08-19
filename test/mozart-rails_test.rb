@@ -1,6 +1,6 @@
 require 'minitest_helper'
 
-class TestMozart_Rails < MiniTest::Unit::TestCase
+class Mozart_RailsTest < MiniTest::Unit::TestCase
   def test_gem_root_constant_exists
     refute_nil Mozart::Rails::GEM_ROOT
   end

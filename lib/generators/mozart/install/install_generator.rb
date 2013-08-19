@@ -7,7 +7,7 @@ if ::Rails.version < "3.1" || !::Rails.application.config.assets.enabled
       class InstallGenerator < ::Rails::Generators::Base
 
         desc "This generator installs Mozart #{Mozart::Rails::MOZART_VERSION}"
-        source_root File.expand_path('../../../../../vendor/assets/javascripts/mozart/vendor/scripts', __FILE__)
+        source_root File.expand_path('../../../../../vendor/assets/javascripts', __FILE__)
 
         def copy_mozart
           say_status("copying", "Mozart (#{Mozart::Rails::MOZART_VERSION})", :green)
@@ -16,7 +16,6 @@ if ::Rails.version < "3.1" || !::Rails.application.config.assets.enabled
           copy_file "jquery.js", "public/javascripts/jquery.js"
           copy_file "underscore.js", "public/javascripts/underscore.js"
         end
-
       end
     end
   end

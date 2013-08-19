@@ -22,9 +22,11 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.3"
+  spec.add_development_dependency "ci_reporter"
   spec.add_development_dependency "coveralls"
   spec.add_development_dependency "rake"
-  spec.add_development_dependency "minitest"
+  spec.add_development_dependency "minitest", "~> 4.7"
+  spec.add_development_dependency "minitest-rails", "~> 0.9"
   spec.add_runtime_dependency "handlebars_assets"
   spec.add_runtime_dependency "jquery-rails"
   spec.add_runtime_dependency "underscore-rails"

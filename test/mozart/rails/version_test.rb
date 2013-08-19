@@ -1,6 +1,6 @@
 require 'minitest_helper'
 
-class Mozart::Rails::TestVersion < MiniTest::Unit::TestCase
+class Mozart::Rails::VersionTest < MiniTest::Unit::TestCase
   def test_version_exists
     refute_nil Mozart::Rails::VERSION
   end

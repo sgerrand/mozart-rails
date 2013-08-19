@@ -4,17 +4,20 @@ require "mozart/rails/assets"
 
 task :build => [:test, :clean, :download]
 task :release => [:test, :clean, :download, :guard_version]
+task :test => :download
 task :default => :test
 
-Rake::TestTask.new do |t|
+require "rake/testtask"
+
+Rake::TestTask.new(:test) do |t|
   t.libs << 'test'
-  t.pattern = 'test/**/test*.rb'
+  t.pattern = 'test/**/*_test.rb'
   t.verbose = true
 end
 
 task :guard_version do
   def check_version(file, pattern, constant)
-    body = File.read(Mozart::Rails::VENDOR_PATH + '/' + file)
+    body = File.read(Mozart::Rails::Assets::VENDOR_PATH + '/' + file)
     match = body.match(pattern) or abort "Version check failed: no pattern matched in #{file}"
     file_version = match[1]
     constant_version = Mozart::Rails.const_get(constant)
@@ -31,7 +34,7 @@ desc "Remove JavaScript asset files"
 task :clean do
   puts "Removing JavaScript assets"
 
-  Dir.glob(Mozart::Rails::VENDOR_PATH + "/*.js").each do |file|
+  Dir.glob(Mozart::Rails::Assets::VENDOR_PATH + "/*.js").each do |file|
     unless file.match(/mozart-all.js$/)
       puts "Removing #{file}"
       File.unlink file
@@ -41,30 +44,21 @@ end
 
 desc "Download source files into the assets directory"
 task :download do
-  require 'net/https'
-
-  Mozart::Rails::JAVASCRIPT_URLS.each do |key, urls|
+  Mozart::Rails::Assets::JAVASCRIPT_URLS.each do |key, urls|
     urls.each do |url|
-      uri = URI.parse(url)
-
-      Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
-        request = Net::HTTP::Get.new uri.path
-        response = http.request request
-
-        case response
-        when Net::HTTPSuccess then
-          ext = url.match(/(min).js$/) ? '.min.js' : '.js'
-          dest = File.join(Mozart::Rails::VENDOR_PATH, key.to_s + ext)
-
-          puts "Downloading #{url} to #{dest}"
-
-          File.open(dest, 'w+') do |f|
-            f.puts response.body
-          end
-        else
-          raise "Unexpected response: #{response.inspect}"
-        end
-      end
+      Mozart::Rails::Assets.download_vendor_file(url)
     end
+  end
+
+  [
+    'https://raw.github.com/wycats/handlebars.js/master/dist/handlebars.js',
+    'https://raw.github.com/wycats/handlebars.js/master/dist/handlebars.runtime.js',
+    'https://code.jquery.com/jquery.js',
+    'https://code.jquery.com/jquery.min.js',
+    'https://raw.github.com/jashkenas/underscore/master/underscore.js',
+    'https://raw.github.com/jashkenas/underscore/master/underscore-min.js',
+    'https://raw.github.com/jashkenas/underscore/master/underscore-min.map',
+  ].each do |url|
+    Mozart::Rails::Assets.download_vendor_file(url)
   end
 end
