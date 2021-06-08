@@ -3,10 +3,9 @@ rvm:
   - 3.0.1
   - 2.7.3
   - ruby-head
-  - jruby-18mode
-  - jruby-19mode
   - rbx-4
   - rbx-5
+  - jruby
   - jruby-head
   - ree
 bundler_args: --binstubs
