@@ -3,10 +3,9 @@ rvm:
   - 3.0.1
   - 2.7.3
   - ruby-head
-  - rbx-4
-  - rbx-5
   - jruby
   - jruby-head
+  - mruby-head
 bundler_args: --binstubs
 before_install:
     - gem install bundler
