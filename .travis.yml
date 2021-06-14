@@ -5,7 +5,6 @@ rvm:
   - ruby-head
   - jruby
   - jruby-head
-  - mruby-head
 bundler_args: --binstubs
 before_install:
     - gem install bundler
