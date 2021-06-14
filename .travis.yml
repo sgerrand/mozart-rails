@@ -7,7 +7,6 @@ rvm:
   - rbx-5
   - jruby
   - jruby-head
-  - ree
 bundler_args: --binstubs
 before_install:
     - gem install bundler
