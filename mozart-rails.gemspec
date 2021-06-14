@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "mozart-rails"
   spec.version       = Mozart::Rails::VERSION
   spec.authors       = ["Sasha Gerrand"]
-  spec.email         = ["sasha.gerrand@bigcommerce.com"]
+  spec.email         = ["rubygems-mozart-rails@sgerrand.com"]
   spec.description   = %q{Use Mozart with Rails 3}
   spec.summary       = %q{This gem provides the Mozart JavaScript framework for your Rails 3 application.}
   spec.homepage      = "https://mozart.io"
